@@ -27,7 +27,6 @@ public class Library {
         CDs = new ArrayList<CD>();
         DVDs = new ArrayList<DVD>();
     }
-
     public Library(String name,  int startHour, int closeHour) {
         this.name = name;
         this.startHour = startHour;
@@ -36,36 +35,17 @@ public class Library {
         this.CDs = new ArrayList<CD>();
         this.DVDs = new ArrayList<DVD>();
     }
-
-
     public String getName() {
         return name;
     }
-
-    public ArrayList<Book> getBooks() {
-        return Books;
-    }
-
-    public ArrayList<CD> getCDs() {
-        return CDs;
-    }
-
-    public ArrayList<DVD> getDVDs() {
-        return DVDs;
-    }
-
     public int  putBook(Book book) {
         this.Books.add(book);
         return this.Books.indexOf(book);
     }
-
-
     public int putCD(CD cd) {
         this.CDs.add(cd);
         return this.CDs.indexOf(cd);
     }
-
-
     public int putDVD(DVD dvd) {
         if (DVDs.size()<3)
             this.DVDs.add(dvd);
@@ -73,9 +53,18 @@ public class Library {
             System.out.println ("Desole, trop tard");
         return this.DVDs.indexOf(dvd);
     }
-
-
-
+    public ArrayList<Book>  putBooks (ArrayList<Book> liste) {
+        this.Books.addAll(liste);
+        return liste;
+    }
+    public ArrayList<CD>  putCDs (ArrayList<CD> liste) {
+        this.CDs.addAll(liste);
+        return liste;
+    }
+    public ArrayList<DVD>  putDVDs (ArrayList<DVD> liste) {
+        this.DVDs.addAll(liste);
+        return liste;
+    }
     public boolean isOpen (float heure) {
         boolean isOpen;
         try {
@@ -84,18 +73,14 @@ public class Library {
         catch(InputMismatchException e) {
             System.out.println("Saisie hors intervalle.");
         }
-
         if ((heure<=this.closeHour)&&(heure>=this.startHour)) isOpen=true;
         else isOpen=false;
         return isOpen;
-
     };
-
     private float readHour (float heure) {
 
         if ((heure>=0.00)&& (heure<=24.00))   return heure;
         else throw new IllegalArgumentException();
-
     }
 
 
