@@ -15,16 +15,26 @@ public class Library {
     private ArrayList<Book> Books;
     private ArrayList<CD> CDs;
     private ArrayList<DVD> DVDs;
+    public  int startHour;
+    public  int closeHour;
 
-    public static int startHour=1;
-    public static int closeHour=7;
 
-
-    public Library (String name) {
-        name= name;
+    public Library () {
+        name= "Paris20";
+        startHour = 1;
+        closeHour = 7;
         Books = new ArrayList<Book>();
         CDs = new ArrayList<CD>();
         DVDs = new ArrayList<DVD>();
+    }
+
+    public Library(String name,  int startHour, int closeHour) {
+        this.name = name;
+        this.startHour = startHour;
+        this.closeHour = closeHour;
+        this.Books = new ArrayList<Book>();
+        this.CDs = new ArrayList<CD>();
+        this.DVDs = new ArrayList<DVD>();
     }
 
 
@@ -32,6 +42,17 @@ public class Library {
         return name;
     }
 
+    public ArrayList<Book> getBooks() {
+        return Books;
+    }
+
+    public ArrayList<CD> getCDs() {
+        return CDs;
+    }
+
+    public ArrayList<DVD> getDVDs() {
+        return DVDs;
+    }
 
     public int  putBook(Book book) {
         this.Books.add(book);

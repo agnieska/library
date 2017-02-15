@@ -11,8 +11,10 @@ public class CD {
 
 
     public CD(String title, int time) {
-        this.title = title;
-        this.time = time;
+        if (time>=0) {
+            this.title = title;
+            this.time = time;
+        }
     }
 
     public String getTitle() {
