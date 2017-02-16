@@ -47,12 +47,21 @@ public class Library {
         return this.CDs.indexOf(cd);
     }
     public int putDVD(DVD dvd) {
-        if (DVDs.size()<3)
+        int indexOf=-2000;
+        if ((this.DVDs.contains(dvd))|| (DVDs.size()>=3)) {
+            if (this.DVDs.contains(dvd))
+            System.out.println("Ce DVD existe deja");
+            else if (DVDs.size()>=3){
+                System.out.println("la bibliotheque est remplie");
+                indexOf=-1000;}
+        }
+        else {
             this.DVDs.add(dvd);
-        else
-            System.out.println ("Desole, trop tard");
-        return this.DVDs.indexOf(dvd);
+            //indexOf= this.DVDs.indexOf(dvd);
+        }
+        return indexOf;
     }
+
     public ArrayList<Book>  putBooks (ArrayList<Book> liste) {
         this.Books.addAll(liste);
         return liste;
@@ -61,10 +70,23 @@ public class Library {
         this.CDs.addAll(liste);
         return liste;
     }
+
     public ArrayList<DVD>  putDVDs (ArrayList<DVD> liste) {
-        this.DVDs.addAll(liste);
-        return liste;
-    }
+        if (this.DVDs.size() + liste.size() >3)
+            System.out.println("Vous pouvez ajouter seulement "+(3-this.DVDs.size())+"elements");
+        else if (this.DVDs.size() + liste.size() <=3)
+        {
+                for (DVD a: DVDs)
+                {
+                    if (this.DVDs.contains(a))
+                        System.out.println("La bibliotheque possede deja le DVD "+a.toString()+" sous indexe "+ DVDs.indexOf(a)+"\n"+"Veuillez corriger votre liste ");
+                    else
+                        this.DVDs.addAll(liste);
+                }
+        }
+        return DVDs;
+}
+
     public boolean isOpen (float heure) {
         boolean isOpen;
         try {
@@ -74,9 +96,11 @@ public class Library {
             System.out.println("Saisie hors intervalle.");
         }
         if ((heure<=this.closeHour)&&(heure>=this.startHour)) isOpen=true;
-        else isOpen=false;
+        else {isOpen=false;
+        System.out.println ("Desole, trop tard");}
         return isOpen;
-    };
+    }
+
     private float readHour (float heure) {
 
         if ((heure>=0.00)&& (heure<=24.00))   return heure;
