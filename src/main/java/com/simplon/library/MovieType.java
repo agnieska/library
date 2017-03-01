@@ -11,7 +11,8 @@ public enum MovieType {
     MUSICAL("Musical");
 
 
-    private final String kind;
+    //private final String kind;
+    private String kind = "";
 
 
     MovieType(String kind) {
@@ -24,7 +25,10 @@ public enum MovieType {
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "MovieType{" +
+                "kind='" + kind + '\'' +
+                '}';
+    }
 }

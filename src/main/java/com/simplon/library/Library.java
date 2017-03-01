@@ -17,6 +17,9 @@ public class Library {
     private ArrayList<DVD> DVDs;
     public  int startHour;
     public  int closeHour;
+    //private final int startHour=1;
+    //private final int closeHour=7;
+    //private final int storagemax=3;
 
 
     public Library () {
@@ -48,7 +51,7 @@ public class Library {
     }
     public int putDVD(DVD dvd) {
         int indexOf=-2000;
-        if ((this.DVDs.contains(dvd))|| (DVDs.size()>=3)) {
+        if ((this.DVDs.contains(dvd)) || (DVDs.size()>=3)) {
             if (this.DVDs.contains(dvd))
             System.out.println("Ce DVD existe deja");
             else if (DVDs.size()>=3){
@@ -57,34 +60,50 @@ public class Library {
         }
         else {
             this.DVDs.add(dvd);
+            indexOf=this.DVDs.indexOf(dvd);
             //indexOf= this.DVDs.indexOf(dvd);
         }
         return indexOf;
     }
 
-    public ArrayList<Book>  putBooks (ArrayList<Book> liste) {
-        this.Books.addAll(liste);
-        return liste;
-    }
-    public ArrayList<CD>  putCDs (ArrayList<CD> liste) {
-        this.CDs.addAll(liste);
-        return liste;
+    public ArrayList<Book>  putBooks (ArrayList<Book> newBooks) {
+        this.Books.addAll(newBooks);
+        return this.Books;
     }
 
-    public ArrayList<DVD>  putDVDs (ArrayList<DVD> liste) {
-        if (this.DVDs.size() + liste.size() >3)
+    public ArrayList<CD>  putCDs (ArrayList<CD> newCD) {
+        this.CDs.addAll(newCD);
+        return this.CDs;
+    }
+
+    public ArrayList<DVD>  putDVDs (ArrayList<DVD> newDVD) {
+
+        if (this.DVDs.size() + newDVD.size()>3)
             System.out.println("Vous pouvez ajouter seulement "+(3-this.DVDs.size())+"elements");
-        else if (this.DVDs.size() + liste.size() <=3)
+        else if (this.DVDs.size() + newDVD.size() <=3)
         {
+            boolean contains = false;
                 for (DVD a: DVDs)
                 {
                     if (this.DVDs.contains(a))
                         System.out.println("La bibliotheque possede deja le DVD "+a.toString()+" sous indexe "+ DVDs.indexOf(a)+"\n"+"Veuillez corriger votre liste ");
-                    else
-                        this.DVDs.addAll(liste);
+                    contains = true;
                 }
+            if  (contains ==false)
+            this.DVDs.addAll(newDVD);
         }
-        return DVDs;
+        return this.DVDs;
+
+
+
+        /*
+        public ArrayList<DVD>  putDVDs (ArrayList<DVD> newDVD){
+
+        for (DVD a: DVDs)
+        if (!(this.DVDs.contains(a)) && (this.DVDs.size()<3))
+         this.DVDs.addAll(a);
+        }
+         */
 }
 
     public boolean isOpen (float heure) {

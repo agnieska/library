@@ -14,6 +14,23 @@ public class LibraryTest
     extends TestCase {
 
 
+   // @Test
+    public void putBook_with_two_books(){
+        //set
+        Library Paris20 = new Library("Paris20", 1, 7);
+        ArrayList<Book> l1 = new ArrayList<Book>();
+        Book b1 = new Book("Titre1", 96);
+        Book b2 = new Book("Titre2", 100);
+        l1.add(b1);
+        l1.add(b2);
+
+        // test
+        ArrayList result = Paris20.putBooks(l1);
+        // asssert
+        assertEquals(2,result.size());
+    }
+
+
     public void testConstrVide() {
 
         // set
@@ -145,22 +162,25 @@ public class LibraryTest
         DVD d2 = new DVD("Titre2", 100, true, MovieType.ACTION);
         l1.add(d1);
         l1.add(d2);
-        ArrayList<DVD> listTest = Paris20.putDVDs(l1);
+
         ArrayList<DVD> l2 = new ArrayList<DVD>();
         DVD d3 = new DVD("Titre3", 1000, true, MovieType.MUSICAL);
         DVD d4 = new DVD("Titre4", 1, true, MovieType.FUN);
         l2.add(d3);
-        l1.add(d4);
-        ArrayList<DVD> expected = Paris20.putDVDs(l1);
+        l2.add(d4);
+
+        ArrayList<DVD> expected = l1;
 
         // test
-        ArrayList<DVD> result = expected;
+
+        ArrayList<DVD> result = new ArrayList<DVD>();
+        result = Paris20.putDVDs(l1);
         result = Paris20.putDVDs(l2);
-        //int size =result.size();
+        int size =result.size();
 
         // assert
         assertEquals(expected, result);
-        //assertEquals(2, size);
+        assertEquals(2,size);
     }
 
     public void testPutSameDVDs() {
